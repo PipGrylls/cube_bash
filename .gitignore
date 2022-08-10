@@ -1,0 +1,4 @@
+cmake-*/
+*.pdx
+.idea
+.DS_Store
