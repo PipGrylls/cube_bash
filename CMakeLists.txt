@@ -37,7 +37,7 @@ file(GLOB IMAGES
 if (TOOLCHAIN STREQUAL "armgcc")
 	add_executable(${PLAYDATE_GAME_DEVICE} ${SDK}/C_API/buildsupport/setup.c src/main.c src/game.c src/game_state.c )
 else()
-	add_library(${PLAYDATE_GAME_NAME} SHARED src/main.c src/game.c  src/game_state.c ${IMAGES})
+	add_library(${PLAYDATE_GAME_NAME} SHARED src/main.c src/game.c src/game_state.c src/sprite_control.c ${IMAGES} )
 endif()
 
 include(${SDK}/C_API/buildsupport/playdate_game.cmake)

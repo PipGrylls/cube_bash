@@ -5,8 +5,11 @@
 #ifndef CUBE_BASH_GAME_STATE_H
 #define CUBE_BASH_GAME_STATE_H
 
+#include <stdio.h>
+
+#include "pd_api.h"
+
 LCDSprite *player;
-LCDSprite *npc;
 int sprint_tap;
 bool sprint_hold;
 
