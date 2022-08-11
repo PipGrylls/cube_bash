@@ -10,15 +10,10 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "game.h"
+#include "game_state.h"
 #include "pd_api.h"
 
 static PlaydateAPI* playdate = NULL;
-
-
-LCDSprite *player;
-extern LCDSprite *npc;
-int sprint_tap;
-bool sprint_hold;
 
 void setPDPtr(PlaydateAPI* p) {
     playdate = p;
