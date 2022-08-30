@@ -12,7 +12,7 @@
 
 // game state stored here
 LCDSprite *player;
-extern LCDSprite *npc;
+LCDSprite *npc;
 int sprint_tap;
 bool sprint_hold;
 
