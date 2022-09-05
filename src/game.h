@@ -9,9 +9,7 @@
 #ifndef game_h
 #define game_h
 
-#include <stdio.h>
-
-#include "pd_api.h"
+#include "global.h"
 
 int update(void* ud);
 void setPDPtr(PlaydateAPI* p);

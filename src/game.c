@@ -6,19 +6,9 @@
 //  CCby
 //
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
 #include "game.h"
 #include "gamestate.h"
 #include "sprite_gen.h"
-
-static PlaydateAPI* playdate = NULL;
-
-void setPDPtr(PlaydateAPI* p) {
-    playdate = p;
-}
-
 
 // inputs
 void checkCrank(void)

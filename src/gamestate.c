@@ -5,6 +5,7 @@
 #include <stdbool.h>
 
 #include "gamestate.h"
+
 LCDSprite *player = NULL;
 LCDSprite *npc = NULL;
 int sprint_tap = false;

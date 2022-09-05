@@ -5,16 +5,20 @@
 #ifndef CUBE_BASH_GAMESTATE_H
 #define CUBE_BASH_GAMESTATE_H
 
-#include <stdio.h>
-#include <stdbool.h>
-
-#include "pd_api.h"
+#include "global.h"
 
 // game state stored here
+
 LCDSprite *player;
 LCDSprite *npc;
 int sprint_tap;
 bool sprint_hold;
+
+
+typedef enum {
+    kPlayer = 0,
+    kNPC = 1,
+} SpriteType;
 
 void updateGamestate(void);
 

@@ -5,10 +5,7 @@
 #ifndef CUBE_BASH_SPRITE_GEN_H
 #define CUBE_BASH_SPRITE_GEN_H
 
-
-#include <stdio.h>
-
-#include "pd_api.h"
+#include "global.h"
 #include "gamestate.h"
 
 LCDSprite* createPlayer(int x, int y);

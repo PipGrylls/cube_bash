@@ -5,8 +5,6 @@
 #include "sprite_gen.h"
 #include "gamestate.h"
 
-static PlaydateAPI* playdate = NULL;
-
 LCDBitmap *loadImageAtPath(const char *path)
 {
     const char *outErr = NULL;
@@ -95,6 +93,8 @@ LCDSprite* createPlayer(int startX, int startY)
     playdate->sprite->setZIndex(playerCube, 1000);
     playdate->sprite->addSprite(playerCube);
 
+    playdate->sprite->setTag(playerCube, kPlayer);
+
     return playerCube;
 }
 
@@ -120,6 +120,8 @@ LCDSprite* createPassive(int startX, int startY)
 
     playdate->sprite->setZIndex(passiveCube, 1000);
     playdate->sprite->addSprite(passiveCube);
+
+    playdate->sprite->setTag(passiveCube, kNPC);
 
     return passiveCube;
 }
