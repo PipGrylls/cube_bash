@@ -20,6 +20,12 @@ typedef enum {
     kNPC = 1,
 } SpriteType;
 
-void updateGamestate(void);
+void getMovement(LCDSprite* s, int *xAcl, int *yAcl)
+
+void movePassive(LCDSprite* NPC, int x_vel, int y_vel);
+void movePlayer(LCDSprite* Player, int x_vel, int y_vel);
+
+void updatePlayer(LCDSprite* s);
+void updatePassive(LCDSprite* s);
 
 #endif //CUBE_BASH_GAMESTATE_H

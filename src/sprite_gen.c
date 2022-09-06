@@ -25,51 +25,6 @@ static SpriteCollisionResponseType passiveCollisionResponse(LCDSprite* sprite, L
     return kCollisionTypeOverlap;
 }
 
-static void updatePlayer(LCDSprite* s)
-{
-    // Get any buttons currently held or pushed in the last cycle
-    PDButtons current;
-    PDButtons pushed;
-    playdate->system->getButtonState(&current, &pushed, NULL);
-
-    int dx = 0;
-    int dy = 0;
-
-    // Cycle over the buttons to get the state
-    if (current & kButtonUp || pushed & kButtonUp){
-        dy -= 1;
-    }
-    if (current & kButtonDown || pushed & kButtonDown){
-        dy += 1;
-    }
-    if (current & kButtonRight || pushed & kButtonRight){
-        dx += 1;
-    }
-    if (current & kButtonLeft || pushed & kButtonLeft){
-        dx -= 1;
-    }
-
-    if (sprint_tap) {
-        dx *= 8;
-        dy *= 8;
-    }
-    if (sprint_hold) {
-        dx *= 2;
-        dy *= 2;
-    }
-
-
-    float x, y;
-    playdate->sprite->getPosition(s, &x, &y);
-
-    playdate->sprite->moveBy(s, dx, dy);
-}
-
-static void updatePassive(LCDSprite* s)
-{
-
-}
-
 LCDSprite* createPlayer(int startX, int startY)
 {
     // create the player
