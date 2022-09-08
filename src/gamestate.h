@@ -12,7 +12,7 @@
 LCDSprite *player;
 LCDSprite *npc;
 int sprint_tap;
-bool sprint_hold;
+int sprint_hold;
 
 
 typedef enum {
@@ -20,7 +20,7 @@ typedef enum {
     kNPC = 1,
 } SpriteType;
 
-void getMovement(LCDSprite* s, int *xAcl, int *yAcl)
+void getMovement(LCDSprite* s, int xAcl, int yAcl);
 
 void movePassive(LCDSprite* NPC, int x_vel, int y_vel);
 void movePlayer(LCDSprite* Player, int x_vel, int y_vel);

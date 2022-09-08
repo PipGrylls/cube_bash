@@ -25,30 +25,52 @@ static SpriteCollisionResponseType passiveCollisionResponse(LCDSprite* sprite, L
     return kCollisionTypeOverlap;
 }
 
+
+typedef struct {
+    int x_acc, y_acc;
+    int x_vel, y_vel;
+    //pointers into the sprite position
+    float *x_pos, *y_pos;
+} dynamics;
+
+typedef struct  {
+    LCDSprite* (*playerSprite)(void);
+    dynamics* (*playerDynamics)(void);
+} playerStruct;
+
+static inline playerStruct playerStructMake(LCDSprite* s)
+{
+    return (playerStruct){ .playerDynamics =   };
+}
+
 LCDSprite* createPlayer(int startX, int startY)
 {
     // create the player
-    LCDSprite *playerCube = playdate->sprite->newSprite();
+    LCDSprite *playerCubeSprite = playdate->sprite->newSprite();
     // give the sprite an update
-    playdate->sprite->setUpdateFunction(playerCube, updatePlayer);
+    playdate->sprite->setUpdateFunction(playerCubeSprite, updatePlayer);
 
     // load and push the image to the sprite
     LCDBitmap *square = loadImageAtPath("images/square");
     int w, h;
     playdate->graphics->getBitmapData(square, &w, &h, NULL, NULL, NULL);
 
-    playdate->sprite->setImage(playerCube, square, kBitmapUnflipped);
+    playdate->sprite->setImage(playerCubeSprite, square, kBitmapUnflipped);
 
     PDRect cr = PDRectMake(5, 5, w, h);
-    playdate->sprite->setCollideRect(playerCube, cr);
-    playdate->sprite->setCollisionResponseFunction(playerCube, playerCollisionResponse);
+    playdate->sprite->setCollideRect(playerCubeSprite, cr);
+    playdate->sprite->setCollisionResponseFunction(playerCubeSprite, playerCollisionResponse);
 
-    playdate->sprite->moveTo(playerCube, startX, startY);
+    playdate->sprite->moveTo(playerCubeSprite, startX, startY);
 
-    playdate->sprite->setZIndex(playerCube, 1000);
-    playdate->sprite->addSprite(playerCube);
+    playdate->sprite->setZIndex(playerCubeSprite, 1000);
+    playdate->sprite->addSprite(playerCubeSprite);
 
-    playdate->sprite->setTag(playerCube, kPlayer);
+    playdate->sprite->setTag(playerCubeSprite, kPlayer);
+
+    // Sprite is set up now assign it to a struct that contains the custom attributes
+
+    playerStruct *playerCube = ;
 
     return playerCube;
 }

@@ -10,6 +10,8 @@
 #include "gamestate.h"
 #include "sprite_gen.h"
 
+int sprint_counter = 0;
+
 // inputs
 void checkCrank(void)
 {
@@ -24,7 +26,18 @@ void checkButtons(void)
     playdate->system->getButtonState(&current, &pushed, &released);
 
     if (current & kButtonA ) {
-        sprint_hold = true;
+        if (sprint_counter < 5) {
+            sprint_counter++;
+        }
+        else {
+            sprint_counter = 0;
+            if (sprint_hold < 5) {
+                sprint_hold++;
+            }
+        }
+    }
+    if (released & kButtonA ){
+        sprint_hold = 1;
     }
 }
 

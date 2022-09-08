@@ -9,10 +9,10 @@
 LCDSprite *player = NULL;
 LCDSprite *npc = NULL;
 int sprint_tap = false;
-bool sprint_hold = true;
+int sprint_hold = 1;
 
 
-void getMovement(LCDSprite* s, int *xAcl, int *yAcl) {
+void getMovement(LCDSprite* s, int xAcl, int yAcl) {
 
 }
 
@@ -101,5 +101,3 @@ void updatePassive(LCDSprite* s)
 
 }
 
-
-void
