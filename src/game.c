@@ -10,8 +10,6 @@
 #include "gamestate.h"
 #include "sprite_gen.h"
 
-int sprint_counter = 0;
-
 // inputs
 void checkCrank(void)
 {
@@ -25,19 +23,28 @@ void checkButtons(void)
     PDButtons current;
     playdate->system->getButtonState(&current, &pushed, &released);
 
-    if (current & kButtonA ) {
-        if (sprint_counter < 5) {
-            sprint_counter++;
-        }
-        else {
-            sprint_counter = 0;
-            if (sprint_hold < 5) {
-                sprint_hold++;
-            }
-        }
+    // Check the buttons and update the dynamics of the player
+    // pressing any button will increase the acceleration in that direction
+    // GOAL: Speeding up should feel 'snowballey' stopping should be snappy.
+    if (current & kButtonRight){
+        player.playerDynamics.x_acc +=1;
     }
-    if (released & kButtonA ){
-        sprint_hold = 1;
+    if (current & kButtonLeft){
+        player.playerDynamics.y_acc -=1;
+    }
+
+    if (current & kButtonUp){
+        player.playerDynamics.y_acc +=1;
+    }
+    if (current & kButtonDown){
+        player.playerDynamics.y_acc -=1;
+    }
+    // If the player presses (B) they should come quickly to a stop.
+    if (current & kButtonB){
+        player.playerDynamics.x_acc = 0;
+        player.playerDynamics.y_acc = 0;
+        player.playerDynamics.x_vel -=5;
+        player.playerDynamics.y_vel -=5;
     }
 }
 

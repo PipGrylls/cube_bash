@@ -6,13 +6,10 @@
 
 #include "gamestate.h"
 
-playerStruct player;
 LCDSprite *npc = NULL;
-int sprint_tap = false;
-int sprint_hold = 1;
 
 
-void getMovement(LCDSprite* s, int xAcl, int yAcl) {
+void getMovement(LCDSprite* s) {
 
 }
 
@@ -54,29 +51,7 @@ void updatePlayer(LCDSprite* s)
     int dx = 0;
     int dy = 0;
 
-    // Cycle over the buttons to get the state
-    if (current & kButtonUp || pushed & kButtonUp){
-        dy -= 1;
-    }
-    if (current & kButtonDown || pushed & kButtonDown){
-        dy += 1;
-    }
-    if (current & kButtonRight || pushed & kButtonRight){
-        dx += 1;
-    }
-    if (current & kButtonLeft || pushed & kButtonLeft){
-        dx -= 1;
-    }
-
-    if (sprint_tap) {
-        dx *= 8;
-        dy *= 8;
-    }
-    if (sprint_hold) {
-        dx *= 2;
-        dy *= 2;
-    }
-
+    getMovement(s);
 
     float x, y;
     playdate->sprite->getPosition(s, &x, &y);

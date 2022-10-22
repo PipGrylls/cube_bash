@@ -8,21 +8,21 @@
 #include "global.h"
 
 
-typedef struct {
+struct dynamics{
     int x_acc, y_acc;
     int x_vel, y_vel;
     //pointers into the sprite position
     float *x_pos, *y_pos;
-} dynamics;
+};
 
-typedef struct  {
+struct playerStruct {
     LCDSprite* playerSprite;
-    dynamics playerDynamics;
-} playerStruct;
+    struct dynamics playerDynamics;
+};
 
 // game state stored here
 
-playerStruct player;
+struct playerStruct player;
 LCDSprite *npc;
 int sprint_tap;
 int sprint_hold;
@@ -33,7 +33,7 @@ typedef enum {
     kNPC = 1,
 } SpriteType;
 
-void getMovement(LCDSprite* s, int xAcl, int yAcl);
+void getMovement(LCDSprite* s);
 
 void movePassive(LCDSprite* NPC, int x_vel, int y_vel);
 void movePlayer(LCDSprite* Player, int x_vel, int y_vel);

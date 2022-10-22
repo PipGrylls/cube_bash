@@ -65,7 +65,7 @@ playerStruct createPlayer(int startX, int startY)
 
     // Sprite is set up now assign it to a struct that contains the custom attributes
 
-    playerStruct playerCube = playerStructMake(playerCubeSprite);
+    struct playerStruct playerCube = playerStructMake(playerCubeSprite);
 
     return playerCube;
 }
