@@ -26,24 +26,19 @@ static SpriteCollisionResponseType passiveCollisionResponse(LCDSprite* sprite, L
 }
 
 
-typedef struct {
-    int x_acc, y_acc;
-    int x_vel, y_vel;
-    //pointers into the sprite position
-    float *x_pos, *y_pos;
-} dynamics;
-
-typedef struct  {
-    LCDSprite* (*playerSprite)(void);
-    dynamics* (*playerDynamics)(void);
-} playerStruct;
+static inline dynamics makeDynamics(int xa, int ya, int xv, int yv, LCDSprite* s)
+{
+    float yp, xp;
+    playdate->sprite->getPosition(s, &xp, &yp);
+    return (dynamics){.x_acc = xa, .y_acc = ya, .x_vel = xv, .y_vel = yv, .x_pos = &xp, .y_pos = &yp};
+}
 
 static inline playerStruct playerStructMake(LCDSprite* s)
 {
-    return (playerStruct){ .playerDynamics =   };
+    return (playerStruct){ .playerSprite = s, .playerDynamics = makeDynamics(0,0,0,0,s)};
 }
 
-LCDSprite* createPlayer(int startX, int startY)
+playerStruct createPlayer(int startX, int startY)
 {
     // create the player
     LCDSprite *playerCubeSprite = playdate->sprite->newSprite();
@@ -70,7 +65,7 @@ LCDSprite* createPlayer(int startX, int startY)
 
     // Sprite is set up now assign it to a struct that contains the custom attributes
 
-    playerStruct *playerCube = ;
+    playerStruct playerCube = playerStructMake(playerCubeSprite);
 
     return playerCube;
 }

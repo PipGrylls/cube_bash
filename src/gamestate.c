@@ -6,7 +6,7 @@
 
 #include "gamestate.h"
 
-LCDSprite *player = NULL;
+playerStruct player;
 LCDSprite *npc = NULL;
 int sprint_tap = false;
 int sprint_hold = 1;

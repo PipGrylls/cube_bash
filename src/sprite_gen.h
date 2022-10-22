@@ -8,7 +8,9 @@
 #include "global.h"
 #include "gamestate.h"
 
-LCDSprite* createPlayer(int x, int y);
+
+
+playerStruct createPlayer(int x, int y);
 LCDSprite* createPassive(int x, int y);
 
 

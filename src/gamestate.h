@@ -7,9 +7,22 @@
 
 #include "global.h"
 
+
+typedef struct {
+    int x_acc, y_acc;
+    int x_vel, y_vel;
+    //pointers into the sprite position
+    float *x_pos, *y_pos;
+} dynamics;
+
+typedef struct  {
+    LCDSprite* playerSprite;
+    dynamics playerDynamics;
+} playerStruct;
+
 // game state stored here
 
-LCDSprite *player;
+playerStruct player;
 LCDSprite *npc;
 int sprint_tap;
 int sprint_hold;
